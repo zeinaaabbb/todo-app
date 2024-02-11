@@ -10,10 +10,11 @@ function ToDO(){
   }
 
   const handleAddTask = () => {
+    //using state updater function
+    //updating the state variable tasks by spreading its current values (...t) and adding a new task (newTask) at the end
     setTasks(t => [...t, newTask]);
     setNewTask("");
   }
-
 
   const handleDeleteTask = (index) => {
 
@@ -32,13 +33,21 @@ function ToDO(){
       <h1>To Do List</h1>
 
       <div>
-        <input type="text" placeholder="Enter Your Task..."/>
+        <input type="text" placeholder="Enter Your Task..." value={newTask} onChange={handleUpdateTask}/>
         <button onClick={handleAddTask}>Add</button>
       </div>
 
       <ol>
-        <li onChange={handleUpdateTask}>{newTask}</li>
+        {tasks.map((task, index) =>
+          <li key={index}>
+            {task}
+          </li>
+        )}
       </ol>
+
+      <button>Delete</button>
+      <button>🔼</button>
+      <button>🔽</button>
 
     </div>
   </>)
