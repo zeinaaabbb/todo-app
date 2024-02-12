@@ -44,16 +44,16 @@ function ToDO(){
 
       <div className="todo-input">
         <input type="text" placeholder="Enter Your Task..." value={newTask} onChange={handleUpdateTask}/>
-        <button className="todo-add" onClick={handleAddTask}>Add</button>
+        <button className="todo-add-btn" onClick={handleAddTask}>Add</button>
       </div>
 
       <ol>
         {tasks.map((task, index) =>
-          <li key={index}>
+          <li className="task" key={index}>
             {task}
-            <button className="todo-delete" onClick={() => handleDeleteTask(index)}>Delete</button>
-            <button className="todo-up" onClick={() => handleMoveTaskUp(index)}>🔼</button>
-            <button className="todo-down" onClick={() => handleMoveTaskDown(index)}>🔽</button>
+            <button className="todo-delete-btn" onClick={() => handleDeleteTask(index)}>Delete</button>
+            <button className="todo-up-btn" onClick={() => handleMoveTaskUp(index)}>🔼</button>
+            <button className="todo-down-btn" onClick={() => handleMoveTaskDown(index)}>🔽</button>
           </li>
         )}
       </ol>
