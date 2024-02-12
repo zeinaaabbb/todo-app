@@ -17,38 +17,46 @@ function ToDO(){
   }
 
   const handleDeleteTask = (index) => {
-
+    setTasks(tasks.filter((_, i) => i!==index));
   }
 
   const handleMoveTaskUp = (index) => {
-
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]]
+      setTasks(updatedTasks);
+    }
   }
 
   const handleMoveTaskDown = (index) => {
+    const updatedTasks = [...tasks];
+    if (index < tasks.length - 1) {
+      [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]]
+      setTasks(updatedTasks);
+    }
 
+    setTasks(updatedTasks);
   }
 
   return(<>
-    <div>
+    <div className="todo-container">
       <h1>To Do List</h1>
 
-      <div>
+      <div className="todo-input">
         <input type="text" placeholder="Enter Your Task..." value={newTask} onChange={handleUpdateTask}/>
-        <button onClick={handleAddTask}>Add</button>
+        <button className="todo-add" onClick={handleAddTask}>Add</button>
       </div>
 
       <ol>
         {tasks.map((task, index) =>
           <li key={index}>
             {task}
+            <button className="todo-delete" onClick={() => handleDeleteTask(index)}>Delete</button>
+            <button className="todo-up" onClick={() => handleMoveTaskUp(index)}>🔼</button>
+            <button className="todo-down" onClick={() => handleMoveTaskDown(index)}>🔽</button>
           </li>
         )}
       </ol>
-
-      <button>Delete</button>
-      <button>🔼</button>
-      <button>🔽</button>
-
     </div>
   </>)
 }
