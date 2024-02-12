@@ -34,8 +34,6 @@ function ToDO(){
       [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]]
       setTasks(updatedTasks);
     }
-
-    setTasks(updatedTasks);
   }
 
   return(<>
